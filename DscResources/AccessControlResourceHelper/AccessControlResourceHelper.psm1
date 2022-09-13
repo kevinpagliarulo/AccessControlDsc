@@ -60,14 +60,17 @@ function Resolve-Identity
 
             $SID = $Identity.Translate([System.Security.Principal.SecurityIdentifier])
             
-            if($SID.Value -eq "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681"){
+            if($SID.Value -eq "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681")
+            {
                 $Principal = [PSCustomObject]@{
                     Name = $SID.Value
                     SID = $SID.Value
                 }
             }
-            else{
+            else
+            {
                 $NTAccount = $SID.Translate([System.Security.Principal.NTAccount])
+                
                 $Principal = [PSCustomObject]@{
                     Name = $NTAccount.Value
                     SID = $SID.Value
